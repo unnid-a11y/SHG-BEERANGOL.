@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, World!</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+      <h1 class="title">Hello World!</h1>
+      <p id="currentTime"></p>
+      <script src="script.js"></script>
+  </body>
+</html><!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- =========================================
+         BASIC PAGE SETTINGS
+    ========================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Sree Ragam Self Help Group Beerangole Loan Interest and Balance Calculator"
+    >
+
+    <meta
+        name="theme-color"
+        content="#050a14"
+    >
+
+    <title>
+        Sree Ragam Self Help Group - Loan Calculator
+    </title>
+
+
+    <!-- =========================================
+         TAILWIND CSS
+    ========================================== -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <!-- =========================================
+         CUSTOM CSS
+    ========================================== -->
+
+    <style>
+
+        /* -----------------------------------------
+           GLOBAL RESET
+        ------------------------------------------ */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #050a14;
+
+            color: white;
+
+            overflow-x: hidden;
+        }
+
+
+        /* -----------------------------------------
+           ANIMATED BACKGROUND IMAGE
+        ------------------------------------------ */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            top: -8%;
+            left: -8%;
+
+            width: 116%;
+            height: 116%;
+
+            background-image:
+
+                linear-gradient(
+                    rgba(5, 10, 20, 0.80),
+                    rgba(5, 10, 20, 0.90)
+                ),
+
+                url("1000085335.png");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-repeat: no-repeat;
+
+            z-index: -3;
+
+            transform: scale(1);
+
+            animation:
+                logoBackgroundZoom
+                18s
+                ease-in-out
+                infinite
+                alternate;
+        }
+
+
+        /* -----------------------------------------
+           GOLDEN ATMOSPHERE / GLOW
+        ------------------------------------------ */
+
+        body::after {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+
+                radial-gradient(
+                    circle at 50% 40%,
+                    rgba(245, 158, 11, 0.13),
+                    transparent 35%
+                ),
+
+                radial-gradient(
+                    circle at 20% 80%,
+                    rgba(245, 158, 11, 0.06),
+                    transparent 30%
+                );
+
+            z-index: -2;
+
+            pointer-events: none;
+
+            animation:
+                goldenGlow
+                7s
+                ease-in-out
+                infinite
+                alternate;
+        }
+
+
+        /* -----------------------------------------
+           BACKGROUND ZOOM ANIMATION
+        ------------------------------------------ */
+
+        @keyframes logoBackgroundZoom {
+
+            0% {
+
+                transform:
+                    scale(1)
+                    translate3d(0, 0, 0);
+            }
+
+            100% {
+
+                transform:
+                    scale(1.08)
+                    translate3d(0, -0.5%, 0);
+            }
+        }
+
+
+        /* -----------------------------------------
+           GOLDEN GLOW ANIMATION
+        ------------------------------------------ */
+
+        @keyframes goldenGlow {
+
+            0% {
+
+                opacity: 0.55;
+
+                transform: scale(1);
+            }
+
+            100% {
+
+                opacity: 1;
+
+                transform: scale(1.08);
+            }
+        }
+
+
+        /* -----------------------------------------
+           MAIN CALCULATOR CARD
+        ------------------------------------------ */
+
+        .calculator {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(10, 18, 32, 0.94),
+                    rgba(5, 10, 20, 0.91)
+                );
+
+            backdrop-filter: blur(14px);
+
+            -webkit-backdrop-filter: blur(14px);
+
+            border:
+                1px solid
+                rgba(245, 158, 11, 0.38);
+
+            box-shadow:
+
+                0 25px 70px
+                rgba(0, 0, 0, 0.65),
+
+                0 0 50px
+                rgba(245, 158, 11, 0.08);
+
+            animation:
+                cardAppear
+                0.8s
+                ease-out;
+        }
+
+
+        /* -----------------------------------------
+           CARD ENTRANCE ANIMATION
+        ------------------------------------------ */
+
+        @keyframes cardAppear {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(25px)
+                    scale(0.98);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+
+        /* -----------------------------------------
+           LOGO / HEADER GLOW
+        ------------------------------------------ */
+
+        .brand-glow {
+
+            animation:
+                brandGlow
+                4s
+                ease-in-out
+                infinite
+                alternate;
+        }
+
+
+        @keyframes brandGlow {
+
+            0% {
+
+                text-shadow:
+                    0 0 5px
+                    rgba(251, 191, 36, 0.15);
+            }
+
+            100% {
+
+                text-shadow:
+                    0 0 18px
+                    rgba(251, 191, 36, 0.45);
+            }
+        }
+
+
+        /* -----------------------------------------
+           GOLD TEXT
+        ------------------------------------------ */
+
+        .gold-text {
+
+            color: #fbbf24;
+        }
+
+
+        /* -----------------------------------------
+           INPUT FIELDS
+        ------------------------------------------ */
+
+        input {
+
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+        }
+
+
+        input:hover {
+
+            border-color:
+                rgba(245, 158, 11, 0.45);
+        }
+
+
+        input:focus {
+
+            transform:
+                translateY(-1px);
+
+            border-color:
+                #fbbf24;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(245, 158, 11, 0.10);
+        }
+
+
+        /* -----------------------------------------
+           CALCULATE BUTTON
+        ------------------------------------------ */
+
+        .calculate-btn {
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f59e0b,
+                    #d97706
+                );
+
+            box-shadow:
+                0 8px 20px
+                rgba(245, 158, 11, 0.16);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+        }
+
+
+        .calculate-btn::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: -100%;
+
+            width: 60%;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.28),
+                    transparent
+                );
+
+            transform:
+                skewX(-20deg);
+
+            animation:
+                buttonShine
+                4s
+                ease-in-out
+                infinite;
+        }
+
+
+        @keyframes buttonShine {
+
+            0% {
+                left: -100%;
+            }
+
+            35% {
+                left: 130%;
+            }
+
+            100% {
+                left: 130%;
+            }
+        }
+
+
+        .calculate-btn:hover {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fbbf24,
+                    #f59e0b
+                );
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 12px 30px
+                rgba(245, 158, 11, 0.28);
+        }
+
+
+        .calculate-btn:active {
+
+            transform:
+                translateY(0);
+        }
+
+
+        /* -----------------------------------------
+           RESULT BOX
+        ------------------------------------------ */
+
+        .result-box {
+
+            animation:
+                resultAppear
+                0.4s
+                ease-out;
+        }
+
+
+        @keyframes resultAppear {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(12px);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+        }
+
+
+        /* -----------------------------------------
+           REMAINING LOAN HIGHLIGHT
+        ------------------------------------------ */
+
+        .remaining-loan {
+
+            animation:
+                remainingGlow
+                3s
+                ease-in-out
+                infinite
+                alternate;
+        }
+
+
+        @keyframes remainingGlow {
+
+            0% {
+
+                text-shadow:
+                    0 0 0
+                    rgba(251, 191, 36, 0);
+            }
+
+            100% {
+
+                text-shadow:
+                    0 0 14px
+                    rgba(251, 191, 36, 0.35);
+            }
+        }
+
+
+        /* -----------------------------------------
+           FOOTER
+        ------------------------------------------ */
+
+        .footer {
+
+            opacity: 0.8;
+
+            transition:
+                opacity 0.3s ease;
+        }
+
+
+        .footer:hover {
+
+            opacity: 1;
+        }
+
+
+        /* -----------------------------------------
+           MOBILE RESPONSIVE SETTINGS
+        ------------------------------------------ */
+
+        @media (max-width: 640px) {
+
+            body::before {
+
+                background-size:
+                    auto 100%;
+
+                background-position:
+                    center center;
+
+                animation-duration:
+                    22s;
+            }
+
+
+            .calculator {
+
+                border-radius:
+                    24px;
+
+                padding:
+                    20px;
+
+                margin-top:
+                    10px;
+
+                margin-bottom:
+                    10px;
+            }
+        }
+
+
+        /* -----------------------------------------
+           REDUCE ANIMATION IF USER PREFERS IT
+        ------------------------------------------ */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+
+                animation-duration:
+                    0.01ms !important;
+
+                animation-iteration-count:
+                    1 !important;
+
+                scroll-behavior:
+                    auto !important;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body
+    class="text-white min-h-screen flex flex-col items-center justify-center p-4"
+>
+
+
+    <!-- =========================================
+         MAIN CALCULATOR
+    ========================================== -->
+
+    <main
+        class="
+            calculator
+            w-full
+            max-w-lg
+            rounded-3xl
+            p-5
+            sm:p-8
+        "
+    >
+
+
+        <!-- =====================================
+             HEADER
+        ====================================== -->
+
+        <header
+            class="text-center mb-7"
+        >
+
+            <!-- Location Badge -->
+
+            <div
+                class="
+                    inline-block
+                    px-3
+                    py-1
+                    mb-3
+                    rounded-full
+                    bg-amber-400/10
+                    border
+                    border-amber-400/20
+                    brand-glow
+                "
+            >
+
+                <span
+                    class="
+                        text-xs
+                        uppercase
+                        tracking-[0.25em]
+                        gold-text
+                        font-semibold
+                    "
+                >
+                    Beerangole
+                </span>
+
+            </div>
+
+
+            <!-- Main Title -->
+
+            <h1
+                class="
+                    text-2xl
+                    sm:text-3xl
+                    font-extrabold
+                    tracking-wide
+                    brand-glow
+                "
+            >
+                Sree Ragam
+            </h1>
+
+
+            <!-- Organization -->
+
+            <h2
+                class="
+                    text-lg
+                    sm:text-xl
+                    font-semibold
+                    text-slate-200
+                "
+            >
+                Self Help Group
+            </h2>
+
+
+            <!-- Description -->
+
+            <p
+                class="
+                    text-sm
+                    text-slate-400
+                    mt-2
+                "
+            >
+                Loan Interest &amp; Balance Calculator
+            </p>
+
+        </header>
+
+
+
+        <!-- =====================================
+             LOAN AMOUNT
+        ====================================== -->
+
+        <div
+            class="mb-4"
+        >
+
+            <label
+                for="principal"
+                class="
+                    block
+                    text-slate-300
+                    text-sm
+                    font-semibold
+                    mb-2
+                "
+            >
+                Loan Amount (₹)
+            </label>
+
+
+            <input
+                type="number"
+                id="principal"
+                value="100000"
+                min="0"
+                step="0.01"
+                inputmode="decimal"
+                autocomplete="off"
+                class="
+                    w-full
+                    px-4
+                    py-3
+                    bg-slate-950/80
+                    border
+                    border-slate-700
+                    rounded-xl
+                    text-white
+                    focus:outline-none
+                    focus:ring-2
+                    focus:ring-amber-400
+                    focus:border-transparent
+                "
+            >
+
+        </div>
+
+
+
+        <!-- =====================================
+             INTEREST RATE
+        ====================================== -->
+
+        <div
+            class="mb-4"
+        >
+
+            <label
+                for="rate"
+                class="
+                    block
+                    text-slate-300
+                    text-sm
+                    font-semibold
+                    mb-2
+                "
+            >
+                Interest Rate (% per annum)
+            </label>
+
+
+            <input
+                type="number"
+                id="rate"
+                value="5"
+                min="0"
+                step="0.01"
+                inputmode="decimal"
+                autocomplete="off"
+                class="
+                    w-full
+                    px-4
+                    py-3
+                    bg-slate-950/80
+                    border
+                    border-slate-700
+                    rounded-xl
+                    text-white
+                    focus:outline-none
+                    focus:ring-2
+                    focus:ring-amber-400
+                    focus:border-transparent
+                "
+            >
+
+        </div>
+
+
+
+        <!-- =====================================
+             LOAN DATE
+        ====================================== -->
+
+        <div
+            class="mb-4"
+        >
+
+            <label
+                for="startDate"
+                class="
+                    block
+                    text-slate-300
+                    text-sm
+                    font-semibold
+                    mb-2
+                "
+            >
+                Loan Date
+            </label>
+
+
+            <input
+                type="date"
+                id="startDate"
+                class="
+                    w-full
+                    px-4
+                    py-3
+                    bg-slate-950/80
+                    border
+                    border-slate-700
+                    rounded-xl
+                    text-white
+                    focus:outline-none
+                    focus:ring-2
+                    focus:ring-amber-400
+                    focus:border-transparent
+                "
+            >
+
+        </div>
+
+
+
+        <!-- =====================================
+             PAYMENT MADE
+        ====================================== -->
+
+        <div
+            class="mb-4"
+        >
+
+            <label
+                for="paymentMade"
+                class="
+                    block
+                    text-slate-300
+                    text-sm
+                    font-semibold
+                    mb-2
+                "
+            >
+                Amount Paid Today (₹)
+            </label>
+
+
+            <input
+                type="number"
+                id="paymentMade"
+                value="5000"
+                min="0"
+                step="0.01"
+                inputmode="decimal"
+                autocomplete="off"
+                class="
+                    w-full
+                    px-4
+                    py-3
+                    bg-slate-950/80
+                    border
+                    border-slate-700
+                    rounded-xl
+                    text-white
+                    focus:outline-none
+                    focus:ring-2
+                    focus:ring-amber-400
+                    focus:border-transparent
+                "
+            >
+
+        </div>
+
+
+
+        <!-- =====================================
+             CALCULATION DATE
+        ====================================== -->
+
+        <div
+            class="mb-6"
+        >
+
+            <label
+                for="endDate"
+                class="
+                    block
+                    text-slate-300
+                    text-sm
+                    font-semibold
+                    mb-2
+                "
+            >
+                Calculation Date
+            </label>
+
+
+            <input
+                type="date"
+                id="endDate"
+                class="
+                    w-full
+                    px-4
+                    py-3
+                    bg-slate-950/80
+                    border
+                    border-slate-700
+                    rounded-xl
+                    text-white
+                    focus:outline-none
+                    focus:ring-2
+                    focus:ring-amber-400
+                    focus:border-transparent
+                "
+            >
+
+        </div>
+
+
+
+        <!-- =====================================
+             CALCULATE BUTTON
+        ====================================== -->
+
+        <button
+            type="button"
+            onclick="calculateLoan()"
+            class="
+                calculate-btn
+                w-full
+                py-3.5
+                rounded-xl
+                text-slate-950
+                font-extrabold
+                transition
+                duration-200
+            "
+        >
+
+            Calculate Loan
+
+        </button>
+
+
+
+        <!-- =====================================
+             RESULT BOX
+        ============================
